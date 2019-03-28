@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>小学题</title>
+</head>
+<body>
+	<div id="content" style="text-align:center;">
+		
+	</div>
+
+	<!-- 
+	规则：
+	1，数字1-20
+	2，结果大于等于0
+	3，两位或三位加减
+-->
+<script>
+	var numbers=[];
+	for (var i = 1; i <= 20; i++) {
+	numbers.push(i)
+	}
+	var symbols=["+","-"];
+
+	var tnumber=1000
+	var html='';
+	for (var i = 0; i < tnumber; i++) {
+		if((i)%4==0){
+			html+="<div style='text-align:center;margin:auto;'>"
+		}
+		html+="<div style='text-align:left;display:inline-block;width:160px;line-height:2.6'>"
+		var step=Math.floor(Math.random()*2+1)
+		if(step==1){
+			var randomnumber1=numbers[Math.floor(Math.random()*numbers.length)]
+			var randomnumber2=numbers[Math.floor(Math.random()*numbers.length)]
+			var randomsymbol=symbols[Math.floor(Math.random()*symbols.length)]
+			if((randomsymbol=='-') && (randomnumber1<=randomnumber2)){
+				html+=randomnumber2+randomsymbol+randomnumber1;
+			}else{
+				html+=randomnumber1+randomsymbol+randomnumber2;
+				
+			}
+		}else if(step==2){
+			var tempresult=0;
+			var randomnumber1=numbers[Math.floor(Math.random()*numbers.length)]
+			var randomnumber2=numbers[Math.floor(Math.random()*numbers.length)]
+			var randomnumber3=numbers[Math.floor(Math.random()*numbers.length)]
+			var randomsymbol1=symbols[Math.floor(Math.random()*symbols.length)]
+			var randomsymbol2=symbols[Math.floor(Math.random()*symbols.length)]
+			if((randomsymbol1=='-') && (randomnumber1<=randomnumber2)){
+				html+=randomnumber2+randomsymbol1+randomnumber1;
+				tempresult=randomnumber2-randomnumber1;
+			}else if((randomsymbol1=='-') && (randomnumber1>randomnumber2)){
+				html+=randomnumber1+randomsymbol1+randomnumber2;
+				tempresult=randomnumber1-randomnumber2;
+			}else {
+				html+=randomnumber1+randomsymbol1+randomnumber2;
+				tempresult=randomnumber1+randomnumber2;
+			}
+
+			if((randomsymbol2=='-') && (tempresult<=randomnumber3)){
+				html+='+'+randomnumber3;
+				//tempresult=randomnumber3-tempresult;
+			}else if((randomsymbol2=='-') && (tempresult>randomnumber3)){
+				html+=randomsymbol2+randomnumber3;
+				//tempresult=tempresult-randomnumber3;
+			}else {
+				html+=randomsymbol2+randomnumber3;
+				//tempresult=tempresult+randomnumber3;
+			}
+
+		}
+
+		
+		html+="=    &#12288;&#12288;"
+		html+="</div>"
+		if((i+1)%4==0){
+			html+="</div>"
+		}
+	};
+	document.querySelector("#content").innerHTML=html
+
+</script>
+	
+</body>
+</html>
