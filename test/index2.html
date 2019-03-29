@@ -39,9 +39,13 @@
 			var randomsymbol=symbols[Math.floor(Math.random()*symbols.length)]
 			if((randomsymbol=='-') && (randomnumber1<=randomnumber2)){
 				temphtml+=randomnumber2+randomsymbol+randomnumber1;
-			}else{
+				tempresult=randomnumber2-randomnumber1;
+			}else if((randomsymbol=='-') && (randomnumber1>randomnumber2)){
 				temphtml+=randomnumber1+randomsymbol+randomnumber2;
-				
+				tempresult=randomnumber1-randomnumber2;
+			}else {
+				temphtml+=randomnumber1+randomsymbol+randomnumber2;
+				tempresult=randomnumber1+randomnumber2;
 			}
 		}else if(step==2){
 			var tempresult=0;
